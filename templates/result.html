@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Forest Change Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container" style="max-width: 1200px; width: 95%;">
+        <h2>🌳 Forest Change Analysis Result</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Before Image</h3>
+                <img src="{{ url_for('static', filename='uploads/' + before_img) }}">
+            </div>
+
+            <div class="card">
+                <h3>After Image</h3>
+                <img src="{{ url_for('static', filename='uploads/' + after_img) }}">
+            </div>
+
+            <div class="card">
+                <h3>Forest Change Mask</h3>
+                <img src="{{ url_for('static', filename='outputs/geospatial_map.png') }}">
+
+                <div class="legend">
+                    <span style="color:#228B22;">● Forest</span>
+                    <span style="color:#FF0000;">● Deforestation</span>
+                    <span style="color:#ccc;">● Non-Forest</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Statistics</h3>
+                <div class="stats">
+                    🌳 Forest Before: <b>{{ result.before_percent }}%</b><br>
+                    🌳 Forest After: <b>{{ result.after_percent }}%</b><br>
+                    📉 Change: <b>{{ result.change }}%</b>
+                </div>
+
+                <div class="result">
+                    Result: {{ result.result }}
+                </div>
+            </div>
+
+            {% if result.trees %}
+            <div class="card">
+                <h3>🌱 Suggested Trees for Reforestation</h3>
+                <ul>
+                    {% for tree in result.trees %}
+                    <li>{{ tree }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <a href="/" class="btn">⬅ Analyze Another Image</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Single Image Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container" style="max-width: 600px;">
+        <h2>🌳 ML-Based Forest Analysis</h2>
+
+        <div class="card" style="margin-top: 20px;">
+            <h3>Uploaded Image</h3>
+            <img src="{{ url_for('static', filename='uploads/' + image) }}">
+
+            <div class="stats" style="margin-top: 15px;">
+                🌿 Forest Coverage: <b>{{ result.forest_percent }}%</b>
+            </div>
+
+            <div class="result">
+                {{ result.result }}
+            </div>
+
+            <h4 style="margin-top: 20px; color: var(--primary-color);">Detected Forest Mask</h4>
+            <img src="{{ url_for('static', filename='outputs/single_forest_mask.png') }}">
+        </div>
+
+        {% if result.trees %}
+        <div class="card" style="margin-top: 20px;">
+            <h3>🌱 Suggested Trees for Plantation</h3>
+            <ul>
+                {% for tree in result.trees %}
+                <li>{{ tree }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <a href="/" class="btn" style="margin-top: 25px;">⬅ Analyze Another</a>
+    </div>
+
+</body>
+
+</html>

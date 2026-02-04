@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forest Change Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🌳 Forest Change Detection</h2>
+    <p>Upload two satellite images from different years to analyze forest cover change.</p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="upload-box">
+            <label>Before Image</label>
+            <input type="file" name="before">
+        </div>
+
+        <div class="upload-box">
+            <label>After Image</label>
+            <input type="file" name="after">
+        </div>
+
+        <div class="note">
+            Upload <b>two images</b> to detect forest change.
+            <br>
+        </div>
+
+        <button type="submit">Analyze Images</button>
+    </form>
+
+    <div class="note">
+        Supported formats: PNG / JPG<br>
+        Same location & zoom recommended
+    </div>
+</div>
+
+</body>
+</html>
